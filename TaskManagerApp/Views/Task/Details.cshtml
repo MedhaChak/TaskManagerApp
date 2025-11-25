@@ -1,0 +1,19 @@
+@model TaskManagerApp.Models.TaskModel
+@{
+    ViewData["Title"] = "Task Details";
+}
+
+<h1>Task Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Priority: @Model.Priority</h6>
+        <p class="card-text">@Model.Description</p>
+        <p><strong>Due:</strong> @(Model.DueDate?.ToString("yyyy-MM-dd") ?? "-")</p>
+        <p><strong>Status:</strong> @(Model.IsComplete ? "Completed" : "Open")</p>
+
+        <a class="btn btn-pink" href="/Tasks/Edit/@Model.Id">Edit</a>
+        <a class="btn btn-pink" href="/Tasks">Back</a>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+@model TaskManagerApp.Models.TaskModel
+
+@{
+    ViewData["Title"] = "Create Task";
+}
+
+<div class="container mt-4">
+    <h2>Create New Task</h2>
+
+    <form asp-action="Create" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Due Date</label>
+            <input asp-for="DueDate" class="form-control" type="date" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Priority" class="form-label">Priority</label>
+            <select asp-for="Priority" class="form-select">
+                <option>Low</option>
+                <option>Normal</option>
+                <option>High</option>
+            </select>
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsComplete" class="form-check-input" />
+            <label asp-for="IsComplete" class="form-check-label">Completed</label>
+        </div>
+
+        <button type="submit" class="btn btn-pink">Save</button>
+        <a asp-action="Index" class="btn btn-pink">Cancel</a>
+
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
