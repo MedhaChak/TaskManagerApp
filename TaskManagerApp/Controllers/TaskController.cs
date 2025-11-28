@@ -15,17 +15,9 @@ namespace TaskManagerApp.Controllers
         {
             _context = context;
         }
-        // 2 getting the list of tasks
-        public IActionResult Index()
-        {
-            var tasks = _context.Tasks
-                .OrderBy(t => t.IsComplete)
-                .ThenBy(t => t.DueDate)
-                .ToList();
-            return View(tasks);
-        }
+        
 
-        // 3 getting details of a specific task // 33333
+        // 2 getting details of a specific task // 33333
 
         public IActionResult Details(int id)
         {
@@ -34,7 +26,7 @@ namespace TaskManagerApp.Controllers
             return View(task);
             
         }
-        // 4 getting the create task page
+        // 3 getting the create task page
 
         [HttpGet]
         public IActionResult Create()
@@ -42,7 +34,7 @@ namespace TaskManagerApp.Controllers
             return View();
         }
 
-        //5 posting the created task
+        //4 posting the created task
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,7 +48,7 @@ namespace TaskManagerApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // 6 editing an existing task
+        // 5 getting an edit task
 
         public IActionResult Edit(int id)
         {
@@ -64,7 +56,7 @@ namespace TaskManagerApp.Controllers
             if (task == null) return NotFound();
             return View(task);
         }
-        //7 posting the edited task
+        //6 posting an edit task
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,7 +75,7 @@ namespace TaskManagerApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
-        // 8 deleting a task
+        // 7 deleting a task
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,7 +89,7 @@ namespace TaskManagerApp.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        // 9 toggling task completion status
+        // 8 toggling task completion status
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ToggleComplete(int id)

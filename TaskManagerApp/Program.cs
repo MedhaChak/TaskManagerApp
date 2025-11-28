@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 // Read the connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// If running on Azure (Production), use absolute SQLite path
+// Running on Azure.
 if (builder.Environment.IsProduction())
 {
     var dbPath = Path.Combine("D:\\home\\site\\wwwroot", "TaskManager.db");
